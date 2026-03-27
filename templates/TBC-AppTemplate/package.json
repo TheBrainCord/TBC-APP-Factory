@@ -1,0 +1,31 @@
+{
+  "name": "@tbc/TBC-AppName",
+  "version": "1.0.0",
+  "private": true,
+  "main": "expo-router/entry",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo run:android",
+    "build:preview": "eas build --platform android --profile preview --non-interactive",
+    "build:prod": "eas build --platform android --profile production --non-interactive"
+  },
+  "dependencies": {
+    "@tbc/ui": "*",
+    "@tbc/utils": "*",
+    "@tbc/hooks": "*",
+    "@tbc/services": "*",
+    "expo": "~52.0.0",
+    "expo-router": "~4.0.0",
+    "expo-status-bar": "~2.0.0",
+    "react": "18.3.1",
+    "react-native": "0.76.3",
+    "react-native-safe-area-context": "4.12.0",
+    "react-native-screens": "~4.4.0"
+  },
+  "devDependencies": {
+    "@tbc/config": "*",
+    "@babel/core": "^7.24.0",
+    "@types/react": "~18.3.0",
+    "typescript": "^5.4.5"
+  }
+}

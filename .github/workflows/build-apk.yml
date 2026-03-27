@@ -1,0 +1,64 @@
+name: Build Android APK
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'apps/**'
+      - 'packages/**'
+      - 'eas.json'
+      - 'package.json'
+  workflow_dispatch:
+    inputs:
+      app:
+        description: 'App folder name (e.g. TBC-KDelivery)'
+        required: true
+        type: string
+      profile:
+        description: 'EAS build profile'
+        required: true
+        default: 'preview'
+        type: choice
+        options:
+          - development
+          - preview
+          - production
+
+jobs:
+  build:
+    name: EAS Build — ${{ github.event.inputs.app || 'TBC-KDelivery' }} (${{ github.event.inputs.profile || 'preview' }})
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: yarn
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Setup EAS CLI
+        uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Build APK
+        working-directory: apps/${{ github.event.inputs.app || 'TBC-KDelivery' }}
+        env:
+          EXPO_PUBLIC_SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          EXPO_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: |
+          eas build \
+            --platform android \
+            --profile ${{ github.event.inputs.profile || 'preview' }} \
+            --non-interactive
+
+      - name: Post build URL to summary
+        if: success()
+        run: echo "### Build complete! Check EAS dashboard for APK download." >> $GITHUB_STEP_SUMMARY

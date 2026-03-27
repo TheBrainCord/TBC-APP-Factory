@@ -1,0 +1,23 @@
+{
+  "expo": {
+    "name": "K-Delivery",
+    "slug": "k-delivery",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "k-delivery",
+    "platforms": ["android"],
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#0D0D0D"
+      },
+      "package": "com.thebraincord.kdelivery"
+    },
+    "plugins": [
+      "expo-router"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}

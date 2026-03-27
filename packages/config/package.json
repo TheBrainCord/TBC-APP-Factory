@@ -1,0 +1,10 @@
+{
+  "name": "@tbc/config",
+  "version": "0.0.1",
+  "private": true,
+  "files": [
+    "babel.config.js",
+    "eslint.config.js",
+    "tsconfig.base.json"
+  ]
+}

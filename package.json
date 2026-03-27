@@ -1,0 +1,23 @@
+{
+  "name": "tbc-app-factory",
+  "private": true,
+  "version": "0.0.1",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "start:kdelivery": "yarn workspace @tbc/TBC-KDelivery start",
+    "start:explorer": "yarn workspace @tbc/TBC-Explorer start",
+    "build:kdelivery": "yarn workspace @tbc/TBC-KDelivery build:preview",
+    "build:explorer": "yarn workspace @tbc/TBC-Explorer build:preview",
+    "typecheck": "tsc -b packages/ui packages/utils packages/hooks packages/services",
+    "lint": "eslint 'apps/**/*.{ts,tsx}' 'packages/**/*.{ts,tsx}' --max-warnings 0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "eslint": "^8.57.0",
+    "typescript": "^5.4.5"
+  }
+}

@@ -1,0 +1,3 @@
+{
+  "extends": "@tbc/config/tsconfig.base.json"
+}
